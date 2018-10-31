@@ -1,3 +1,4 @@
+#ignore intermediate files produced when compiling from .tex to .pdf
 *.aux
 *.fdb_latexmk
 *.fls
