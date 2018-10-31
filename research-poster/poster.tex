@@ -1,0 +1,178 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% baposter Landscape Poster
+% LaTeX Template
+% Version 1.0 (11/06/13)
+%
+% baposter Class Created by:
+% Brian Amberg (baposter@brian-amberg.de)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[landscape,a0paper,fontscale=0.285]{xebaposter} % Adjust the font scale/size here
+
+\usepackage{graphicx} % Required for including images
+\graphicspath{{figures/}} % Directory in which figures are stored
+
+\usepackage{amsmath} % For typesetting math
+\usepackage{amssymb} % Adds new symbols to be used in math mode
+
+\usepackage{booktabs} % Top and bottom rules for tables
+\usepackage{enumitem} % Used to reduce itemize/enumerate spacing
+\usepackage{palatino} % Use the Palatino font
+\usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
+
+\usepackage{multicol} % Required for multiple columns
+\setlength{\columnsep}{1.5em} % Slightly increase the space between columns
+\setlength{\columnseprule}{0mm} % No horizontal rule between columns
+
+\usepackage{tikz} % Required for flow chart
+\usetikzlibrary{shapes,arrows} % Tikz libraries required for the flow chart in the template
+
+\newcommand{\compresslist}{ % Define a command to reduce spacing within itemize/enumerate environments, this is used right after \begin{itemize} or \begin{enumerate}
+\setlength{\itemsep}{1pt}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+}
+
+\definecolor{lightblue}{rgb}{0.145,0.6666,1} % Defines the color used for content box headers
+
+\begin{document}
+
+\begin{poster}
+{
+headerborder=closed, % Adds a border around the header of content boxes
+colspacing=1em, % Column spacing
+bgColorOne=white, % Background color for the gradient on the left side of the poster
+bgColorTwo=white, % Background color for the gradient on the right side of the poster
+borderColor=lightblue, % Border color
+headerColorOne=black, % Background color for the header in the content boxes (left side)
+headerColorTwo=lightblue, % Background color for the header in the content boxes (right side)
+headerFontColor=white, % Text color for the header text in the content boxes
+boxColorOne=white, % Background color of the content boxes
+textborder=roundedleft, % Format of the border around content boxes, can be: none, bars, coils, triangles, rectangle, rounded, roundedsmall, roundedright or faded
+eyecatcher=true, % Set to false for ignoring the left logo in the title and move the title left
+headerheight=0.1\textheight, % Height of the header
+headershape=roundedright, % Specify the rounded corner in the content box headers, can be: rectangle, small-rounded, roundedright, roundedleft or rounded
+headerfont=\Large\bf\textsc, % Large, bold and sans serif font in the headers of content boxes
+%textfont={\setlength{\parindent}{1.5em}}, % Uncomment for paragraph indentation
+linewidth=2pt % Width of the border lines around content boxes
+}
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION 
+%----------------------------------------------------------------------------------------
+%
+{\includegraphics[height=4em]{figures/rcx.png}} % First university/lab logo on the left
+{\bf\textsc{Internet Teleoperation of LEGO\textregistered \ RCX Robot}\vspace{0.5em}} % Poster title
+{\textsc{John Holbrook, Philip Taylor}} % Author names and institution
+{\includegraphics[height=4em]{figures/rcx.png} } % Second university/lab logo on the right
+
+\headerbox{Robot Design}{name=design, column=0, span=2}{
+	\begin{multicols}{2}
+		\begin{center}
+			%\includegraphics[width=0.95\linewidth]{rover.png}\\
+			%\includegraphics[width=0.95\linewidth]{rover_top.png}\\
+			%\includegraphics[width=0.95\linewidth]{rover_perspective.png}\\
+			%\includegraphics[width=0.95\linewidth]{demo_rover.png}\\
+			%\includegraphics[width=0.95\linewidth]{demo_rover_front.png}\\
+			%\includegraphics[width=0.95\linewidth]{demo_rover_no_rcx.png}\\
+			%\includegraphics[width=0.95\linewidth]{demo_rover_no_rcx_side.png}\\
+		\end{center}
+	\end{multicols}
+}
+
+%-----
+
+\headerbox{Two Ways to Drive}{name=driving, column=2, span=2}{
+	\setlength\columnsep{25pt}
+	\begin{multicols}{2}
+		\textbf{Drive the Demo Rover}
+		\begin{itemize}
+			\item Connect to the "\textit{FaRCX Demo}" WiFi network
+			\item In your web browser, visit http://demo.farcx.us
+			\item Use the live video feed and buttons on the web page to drive the rover!
+		\end{itemize}
+		
+		\vfill\null
+		\columnbreak
+		
+		\textbf{Drive the Remote Rover}
+			\begin{itemize}
+				\item Visit http://farcx.us
+				\item Use the two live video feeds and buttons on the web page to drive the rover!
+			\end{itemize}	
+	\end{multicols}
+}
+
+%-----
+
+\headerbox{Advantages of FaRCX}{name=advantages, row=0, column=3, below=driving}{
+	\begin{itemize}\compresslist
+		\item Project is open-source, with continued support.
+		\item Software stack designed to run on Linux, but could be reatively easily adapted to run on other platforms.
+		\item Video is live-streamed at variable frame rate (4 FPS used for remote rover), and
+			multiple cameras can be utilized (onboard, third-person view, etc.)
+		\item Control web page written to ocmply with modern HTML standards.
+		\item Control of robot is achieved by sending easily-decipherable POST requests to a
+			server, so other means of control (scripts, smartphone apps, etc.) could easily be
+			developed.
+	\end{itemize}
+}
+
+\headerbox{Prior Art}{name=prior-art, column=2, row=0, below=driving}{
+	A previous software package, \textit{Red Rover, Red Rover}, also allowed for
+	teleoperation, but had several limitations:
+	\begin{itemize}\compresslist
+		\item \textit{RRRR}, developed in 1998 for The Planetary Society, had long since been
+		abandoned as a coordinated project.
+		\item Server software was Windows-only, and unsupported on recent versions of Windows.
+		\item Video was limited to a single camera, and limited to still images transmitted during
+		control sequences (otherwise static).
+		\item Control web page design was clunky and difficult to navigate.
+	\end{itemize}
+	%In the early 2000s, as many as one dozen \textit{RRRR} deployments, located around
+	%the world, were available online. FaRCX was designed to replace the last known
+	%\textit{RRRR} deployment, and took control of the rover model in January 2015.
+}
+
+%-----
+
+\headerbox{Author Contact Info}{name=author-contact, column=3, below=advantages}{
+	\begin{center}
+		\textbf{Philip Taylor}\\
+		Email - philip@philipt.us\\
+		Website - http://philipt.us\\
+		\textbf{John Holbrook}\\
+		Email - john@johnholbrook.us\\
+		Website - http://johnholbrook.us
+	\end{center}
+}
+
+%-----
+
+\headerbox{Project Contact Info}{name=project-contact, column=2, below=advantages, aligned=author-contact}{
+	\begin{center}
+		GitHub - https://github.com/FaRCX\\
+		Teleoperation - http://FaRCX.us\\
+	\end{center}
+}
+
+\headerbox{}{name=filler-bar, column=0, span=4, below=author-contact}{
+	\begin{center}
+		\huge{DRIVE OUR ROVER AT http://FaRCX.us!}
+	\end{center}
+}
+
+%-----
+\end{poster}
+
+\end{document}
